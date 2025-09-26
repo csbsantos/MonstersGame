@@ -2,7 +2,9 @@
 public class PlayerMonster {
     private String name;
     private int numberOfCards;
-    private Monster [] monstersToPlayWith;
+    private Monster[] monstersToPlayWith= new Monster[3];
+    int randomMonster = (int) (Math.random() * monstersToPlayWith.length);
+
 
     public PlayerMonster(String name, int numberOfCards, Monster[] monstersToPlayWith) {
         this.name = name;
@@ -22,16 +24,17 @@ public class PlayerMonster {
         return monstersToPlayWith;
     }
 
-    public void chooseMonsterToAttack(Monster [] monstersToPlayWith){
-//if (monstersToPlayWith[int i].getLife()>0){
-//    monstersToPlayWith[0].attack();
-}
+    public void chooseMonsterToAttack(Monster[] monstersToPlayWith) {
+        int monsterToAttack = (int) (Math.random() * monstersToPlayWith.length);
+        Monster chosenToAttack = monstersToPlayWith[monsterToAttack];
+        if (chosenToAttack.getLife() > 0) {
+            chosenToAttack.attack(chosenToAttack.getLife(), monstersToPlayWith[randomMonster]);
+        }
     }
 
-//    public void chooseMonsterToDefend (Monster [] monstersToPlayWith){
-//        int randomMonster= (int) (Math.random()*monstersToPlayWith.length);
-//            String monsterChosen= monstersToPlayWith[randomMonster].toString();
-//            System.out.println("Monster to defend is" + monsterChosen);
-//
-//        }
+    public void chooseMonsterToDefend(Monster[] monstersToPlayWith) {
+        Monster monsterChosen = monstersToPlayWith[randomMonster];
+        System.out.println("Monster to defend is" + monsterChosen.toString());
+
     }
+}
